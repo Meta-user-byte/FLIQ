@@ -18,6 +18,14 @@ wdbc_columns = [
     'compactness_worst', 'concavity_worst', 'concave_points_worst', 'symmetry_worst', 'fractal_dimension_worst'
     ]
 
+# Define column names for adult dataset
+adult_columns = [
+    "age", "workclass", "fnlwgt", "education", "education-num", "marital-status",
+    "occupation", "relationship", "race", "sex", "capital-gain", "capital-loss",
+    "hours-per-week", "native-country", "income"
+]
+
+
 def data_reader(filepath):
 
     #print(f"Loading data from {filepath}...")
@@ -32,6 +40,11 @@ def data_reader(filepath):
     # Use custom columns if file is wdbc.data
     if filepath == "Datasets/breast+cancer+wisconsin+diagnostic/wdbc.data":
         df = pd.read_csv(filepath, delimiter=",", header=None, names=wdbc_columns)
+    if filepath == "Datasets/adult/adult.data":
+        df_test = pd.read_csv("Datasets/adult/adult.test", names=adult_columns, skiprows=1,skipinitialspace=True)
+        df_test['income'] = df_test['income'].str.replace('.', '', regex=False)
+        df_train = pd.read_csv(filepath, names=adult_columns, skipinitialspace=True)
+        df = pd.concat([df_train, df_test], ignore_index=True)
     else:
         df = pd.read_csv(filepath, delimiter=delimiter)
         # Insert index column if not present
