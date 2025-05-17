@@ -52,3 +52,23 @@ def data_reader(filepath):
             df.insert(0, 'index', range(1, len(df) + 1))
 
     return df
+
+def data_cleaning(df, data=None):
+
+    # Remove duplicates
+    df = df.drop_duplicates()
+
+    # Remove rows with missing values
+    df = df.dropna()
+
+    # Remove rows with all zero values
+    df = df.loc[(df != 0).any(axis=1)]
+
+    # Remove rows with all NaN values
+    df = df.dropna(how='all')
+
+    if data is not None:
+        
+        df.drop(columns=["SMILES"])
+
+    return df
