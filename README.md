@@ -1,4 +1,4 @@
 # FLIQ Hackathon
 
 Team name: QCanary 
-Team members: Ankit Sharma, Soham Pawar, Yasmin, Jhanhavi
+Team members: Ankit Sharma, Soham Pawar, Yasmin, Janhavi
