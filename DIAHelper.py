@@ -310,9 +310,11 @@ class Helper:
             
             return col_idx_map
     
-    def get_col_prop_map(self, col_idx: int = None):
+     def get_col_prop_map(self, col_idx: int|str = None):
         if (self.train_df is not None) and (self.test_df is not None):
-            if col_idx is not None:
+            if (col_idx is not None) and (type(col_idx) is int):
                 return self.col_idx_map[col_idx] + " --> " + self.col_prop_map[self.col_idx_map[col_idx]]
+            if (col_idx is not None) and (type(col_idx) is str):
+                return col_idx + " --> " + self.col_prop_map[col_idx]
             else:
                 return self.col_prop_map
