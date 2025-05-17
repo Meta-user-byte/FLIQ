@@ -40,7 +40,7 @@ def data_reader(filepath):
     # Use custom columns if file is wdbc.data
     if filepath == "Datasets/breast+cancer+wisconsin+diagnostic/wdbc.data":
         df = pd.read_csv(filepath, delimiter=",", header=None, names=wdbc_columns)
-    if filepath == "Datasets/adult/adult.data":
+    elif filepath == "Datasets/adult/adult.data":
         df_test = pd.read_csv("Datasets/adult/adult.test", names=adult_columns, skiprows=1,skipinitialspace=True)
         df_test['income'] = df_test['income'].str.replace('.', '', regex=False)
         df_train = pd.read_csv(filepath, names=adult_columns, skipinitialspace=True)
